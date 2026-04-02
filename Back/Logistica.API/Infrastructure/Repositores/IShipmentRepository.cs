@@ -6,9 +6,9 @@ namespace Encomiendas.API.Infrastructure.Repositories
 {
     public interface IShipmentRepository
     {
-        Task<CreateShipmentResponse> CreateShipmentAsync(CreateShipmentRequest request);
-        Task ChangeShipmentStatusAsync(ChangeShipmentStatusRequest request);
-        Task<IEnumerable<ShipmentHistoryDto>> GetShipmentHistoryAsync(int shipmentId, int companyId);
+        Task<CreateShipmentResponse> CreateShipmentAsync(CreateShipmentRequest request, int userId,  int companyId);
+        Task ChangeShipmentStatusAsync(ChangeShipmentStatusRequest request, int userId, int companyId);
+        Task<IEnumerable<ShipmentHistoryDto>> GetShipmentHistoryAsync(int shipmentId, int companyId, string userRole);
         Task<ShipmentTrackingResponseDto> GetTrackingAsync(string trackingNumber);
     }
 }

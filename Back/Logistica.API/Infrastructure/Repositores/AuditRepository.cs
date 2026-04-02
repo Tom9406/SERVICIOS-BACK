@@ -1,48 +1,24 @@
 ﻿using Dapper;
-using Dapper;
 using Encomiendas.API.Infrastructure.Data;
 using Logistica.API.Application.DTOs;
-using Logistica.API.Application.DTOs.Auth;
 using Logistica.API.Common;
-using Logistica.API.Infrastructure.Repositores;
+using Logistica.API.Infrastructure.Repositories;
 using System.Data;
 
-
-public class AuthRepository : IAuthRepository
+public class AuditRepository : IAuditRepository
 {
     private readonly IDbConnectionFactory _connectionFactory;
 
-    public AuthRepository(IDbConnectionFactory connectionFactory)
+    public AuditRepository(IDbConnectionFactory connectionFactory)
     {
         _connectionFactory = connectionFactory;
     }
-
-    public async Task<LoginUserDto?> LoginAsync(int companyId, string username, string password)
-    {
-        using var connection = _connectionFactory.CreateConnection();
-
-        var parameters = new
-        {
-            CompanyID = companyId,
-            Username = username,
-            Password = password
-        };
-
-        var result = await connection.QuerySingleOrDefaultAsync<LoginUserDto>(
-            "Auth_Login",
-            parameters,
-            commandType: CommandType.StoredProcedure
-        );
-
-        return result;
-    }
-
 
     public async Task<PagedResult<AuditLogDto>> GetAuditLogsAsync(
     int companyId,
     GetAuditLogsRequestDto request)
     {
-        using var connection = _connectionFactory.CreateConnection();
+        using var connection = _connectionFactory.CreateConnection(); 
 
         var parameters = new DynamicParameters();
 
@@ -71,5 +47,4 @@ public class AuthRepository : IAuthRepository
             Data = data
         };
     }
-
 }

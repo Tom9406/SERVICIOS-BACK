@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yA0qrAB4Mn0=",
+  "dgSpecHash": "4516VqJelBk=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Logistica.API.csproj",
+  "projectFilePath": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\Logistica.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Tony\\.nuget\\packages\\dapper\\2.1.72\\dapper.2.1.72.nupkg.sha512",
     "C:\\Users\\Tony\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.0\\microsoft.aspnetcore.authentication.jwtbearer.8.0.0.nupkg.sha512",

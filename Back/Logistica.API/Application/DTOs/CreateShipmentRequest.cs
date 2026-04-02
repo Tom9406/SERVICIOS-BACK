@@ -2,7 +2,7 @@
 {
     public class CreateShipmentRequest
     {
-        public int CompanyId { get; set; }
+        
 
         public int SenderCustomerId { get; set; }
         public int ReceiverCustomerId { get; set; }
@@ -19,6 +19,6 @@
         public string PaymentType { get; set; } = string.Empty;
         public string? Observations { get; set; }
 
-        public int UserId { get; set; }
+        
     }
 }

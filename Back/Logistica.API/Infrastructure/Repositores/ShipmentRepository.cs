@@ -15,13 +15,13 @@ namespace Encomiendas.API.Infrastructure.Repositories
             _connectionFactory = connectionFactory;
         }
 
-        public async Task<CreateShipmentResponse> CreateShipmentAsync(CreateShipmentRequest request)
+        public async Task<CreateShipmentResponse> CreateShipmentAsync(CreateShipmentRequest request, int userId,  int companyId)
         {
             using var connection = _connectionFactory.CreateConnection();
 
             var parameters = new DynamicParameters();
 
-            parameters.Add("@CompanyID", request.CompanyId);
+            
             parameters.Add("@SenderCustomerID", request.SenderCustomerId);
             parameters.Add("@ReceiverCustomerID", request.ReceiverCustomerId);
             parameters.Add("@SenderAddressID", request.SenderAddressId);
@@ -32,19 +32,22 @@ namespace Encomiendas.API.Infrastructure.Repositories
             parameters.Add("@PackageDescription", request.Description);
             parameters.Add("@PaymentType", request.PaymentType);
             parameters.Add("@Observations", request.Observations);
-            parameters.Add("@UserID", request.UserId);
+
+            parameters.Add("@UserID", userId);
+            parameters.Add("@CompanyID", companyId);
+
 
             using var multi = await connection.QueryMultipleAsync(
                 "CreateShipment",
                 parameters,
                 commandType: CommandType.StoredProcedure
-            );//
+            );
 
             var result = await multi.ReadFirstOrDefaultAsync<CreateShipmentResponse>();
 
             return result ?? new CreateShipmentResponse();
         }
-        public async Task ChangeShipmentStatusAsync(ChangeShipmentStatusRequest request)
+        public async Task ChangeShipmentStatusAsync(   ChangeShipmentStatusRequest request,  int userId,  int companyId)
         {
             using var connection = _connectionFactory.CreateConnection();
 
@@ -52,9 +55,11 @@ namespace Encomiendas.API.Infrastructure.Repositories
 
             parameters.Add("@ShipmentID", request.ShipmentId);
             parameters.Add("@NewStatusID", request.NewStatusId);
-            parameters.Add("@UserID", request.UserId);
-            parameters.Add("@BranchID", request.BranchId);
             parameters.Add("@Notes", request.Notes);
+
+            //  identidad segura desde JWT
+            parameters.Add("@UserID", userId);
+            parameters.Add("@CompanyID", companyId);
 
             await connection.ExecuteAsync(
                 "ChangeShipmentStatus",
@@ -62,7 +67,6 @@ namespace Encomiendas.API.Infrastructure.Repositories
                 commandType: CommandType.StoredProcedure
             );
         }
-
         public async Task<ShipmentTrackingResponseDto> GetTrackingAsync(string trackingNumber)
         {
             using var connection = _connectionFactory.CreateConnection();
@@ -87,16 +91,18 @@ namespace Encomiendas.API.Infrastructure.Repositories
                 History = history
             };
         }
-
-
-
-        public async Task<IEnumerable<ShipmentHistoryDto>> GetShipmentHistoryAsync(int shipmentId, int companyId)
+        public async Task<IEnumerable<ShipmentHistoryDto>> GetShipmentHistoryAsync(int shipmentId, int companyId, string userRole)
         {
             using var connection = _connectionFactory.CreateConnection();
 
             return await connection.QueryAsync<ShipmentHistoryDto>(
                 "dbo.GetShipmentHistory",
-                new { ShipmentID = shipmentId, CompanyID = companyId },
+                new
+                {
+                    ShipmentID = shipmentId,
+                    CompanyID = companyId,
+                    UserRole = userRole
+                },
                 commandType: CommandType.StoredProcedure
             );
         }

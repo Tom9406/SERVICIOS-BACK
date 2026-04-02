@@ -1,8 +1,8 @@
 using Encomiendas.API.Common.Middleware;
 using Encomiendas.API.Infrastructure.Data;
 using Encomiendas.API.Infrastructure.Repositories;
-using Logistica.API.Infrastructure.Repositores;
 
+using Logistica.API.Infrastructure.Repositores;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -13,6 +13,9 @@ using Microsoft.OpenApi.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
 
 
 builder.Services.AddSwaggerGen(options =>
@@ -68,6 +71,50 @@ builder.Services.AddAuthentication(options =>
             Encoding.UTF8.GetBytes(jwtKey)
         )
     };
+
+    
+    options.Events = new JwtBearerEvents
+    {
+        OnChallenge = async context =>
+        {
+            context.HandleResponse();
+
+            context.Response.StatusCode = 401;
+            context.Response.ContentType = "application/json";
+
+            var response = new
+            {
+                success = false,
+                data = (object?)null,
+                error = new
+                {
+                    code = 401,
+                    message = "Token inválido o no proporcionado"
+                }
+            };
+
+            await context.Response.WriteAsJsonAsync(response);
+        },
+
+        OnForbidden = async context =>
+        {
+            context.Response.StatusCode = 403;
+            context.Response.ContentType = "application/json";
+
+            var response = new
+            {
+                success = false,
+                data = (object?)null,
+                error = new
+                {
+                    code = 403,
+                    message = "No tienes permisos para acceder a este recurso"
+                }
+            };
+
+            await context.Response.WriteAsJsonAsync(response);
+        }
+    };
 });
 
 //Services
@@ -89,7 +136,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-
+app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseMiddleware<ErrorHandlingMiddleware>();
 
 // Pipeline

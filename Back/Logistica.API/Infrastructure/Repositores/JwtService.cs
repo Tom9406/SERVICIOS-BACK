@@ -27,7 +27,7 @@ public class JwtService : IJwtService
         {
             new Claim("userId", user.UserID.ToString()),
             new Claim("companyId", user.CompanyID.ToString()),
-            new Claim(ClaimTypes.Role, user.Role)
+            new Claim(ClaimTypes.Role, user.Role.ToUpper())
         };
 
         var token = new JwtSecurityToken(

@@ -1,54 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\",
+  "WorkspaceRootPath": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\infrastructure\\repositores\\shipmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:infrastructure\\repositores\\shipmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\logistica\\back\\logistica.api\\infrastructure\\repositores\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:infrastructure\\repositores\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\controllers\\shipmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:controllers\\shipmentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\infrastructure\\repositores\\ishipmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:infrastructure\\repositores\\ishipmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:controllers\\testcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\infrastructure\\repositores\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:infrastructure\\repositores\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\infrastructure\\repositores\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:infrastructure\\repositores\\authrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\infrastructure\\repositores\\iauthrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:infrastructure\\repositores\\iauthrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\application\\dtos\\auth\\loginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:application\\dtos\\auth\\loginresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\application\\dtos\\auth\\loginuserdto,cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:application\\dtos\\auth\\loginuserdto,cs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\application\\dtos\\auth\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:application\\dtos\\auth\\loginrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\back\\logistica.api\\application\\dtos\\shipmenttrackingheader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:application\\dtos\\shipmenttrackingheader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|c:\\users\\tony\\documents\\gitktraken\\logistica\\logistica\\back\\logistica.api\\controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FAB460EB-D94E-47FD-A671-D46E47216E15}|Logistica.API.csproj|solutionrelative:controllers\\customerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,152 +18,33 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ShipmentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\ShipmentRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositores\\ShipmentRepository.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\ShipmentRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositores\\ShipmentRepository.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAYwCgAAAAQAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "CustomersController.cs",
+              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\Controllers\\CustomersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CustomersController.cs",
+              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\Controllers\\CustomersController.cs",
+              "RelativeToolTip": "Controllers\\CustomersController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T02:24:07.383Z",
+              "WhenOpened": "2026-04-02T12:51:52.619Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IJwtService.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\IJwtService.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositores\\IJwtService.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\IJwtService.cs",
-              "RelativeToolTip": "Infrastructure\\Repositores\\IJwtService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositores\\CustomerRepository.cs",
+              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\CustomerRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositores\\CustomerRepository.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAcwIcAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T01:29:51.248Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TestController.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Controllers\\TestController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TestController.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Controllers\\TestController.cs",
-              "RelativeToolTip": "Controllers\\TestController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAkwB4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T01:11:15.806Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAYwCsAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T01:10:35.655Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AuthRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\AuthRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositores\\AuthRepository.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\AuthRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositores\\AuthRepository.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T01:09:59.384Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "IAuthRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\IAuthRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositores\\IAuthRepository.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\IAuthRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositores\\IAuthRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T01:09:08.239Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "LoginResponse.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Application\\DTOs\\Auth\\LoginResponse.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\LoginResponse.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Application\\DTOs\\Auth\\LoginResponse.cs",
-              "RelativeToolTip": "Application\\DTOs\\Auth\\LoginResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T01:05:46.991Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "LoginUserDto,cs.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Application\\DTOs\\Auth\\LoginUserDto,cs.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\LoginUserDto,cs.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Application\\DTOs\\Auth\\LoginUserDto,cs.cs",
-              "RelativeToolTip": "Application\\DTOs\\Auth\\LoginUserDto,cs.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T01:04:14.817Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "LoginRequest.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Application\\DTOs\\Auth\\LoginRequest.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\Auth\\LoginRequest.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Application\\DTOs\\Auth\\LoginRequest.cs",
-              "RelativeToolTip": "Application\\DTOs\\Auth\\LoginRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-27T01:03:43.361Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IShipmentRepository.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\IShipmentRepository.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositores\\IShipmentRepository.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Infrastructure\\Repositores\\IShipmentRepository.cs",
-              "RelativeToolTip": "Infrastructure\\Repositores\\IShipmentRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T18:51:43.693Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ShipmentsController.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Controllers\\ShipmentsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ShipmentsController.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Controllers\\ShipmentsController.cs",
-              "RelativeToolTip": "Controllers\\ShipmentsController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwAQAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T18:44:52.387Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "ShipmentTrackingHeader.cs",
-              "DocumentMoniker": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Application\\DTOs\\ShipmentTrackingHeader.cs",
-              "RelativeDocumentMoniker": "Application\\DTOs\\ShipmentTrackingHeader.cs",
-              "ToolTip": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Application\\DTOs\\ShipmentTrackingHeader.cs",
-              "RelativeToolTip": "Application\\DTOs\\ShipmentTrackingHeader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-26T18:49:35.822Z"
+              "WhenOpened": "2026-04-02T12:50:43.169Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,81 +1,89 @@
 ﻿using Encomiendas.API.Application.DTOs;
 using Encomiendas.API.Infrastructure.Repositories;
+using Logistica.API.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
-
-namespace Encomiendas.API.Controllers
-{
-
-
-    [Authorize]
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ShipmentsController : ControllerBase
-    {
-        private readonly IShipmentRepository _repository;
-
-        public ShipmentsController(IShipmentRepository repository)
-        {
-            _repository = repository;
-        }
-
-       
 
 [Authorize]
-[HttpPost]
-public async Task<IActionResult> CreateShipment([FromBody] CreateShipmentRequest request)
+[ApiController]
+[Route("api/[controller]")]
+public class ShipmentsController : BaseController
 {
-    var userIdClaim = User.FindFirst("userId")?.Value;
-    var companyIdClaim = User.FindFirst("companyId")?.Value;
+    private readonly IShipmentRepository _repository;
 
-    if (userIdClaim == null || companyIdClaim == null)
-        return Unauthorized("Invalid token");
+    public ShipmentsController(IShipmentRepository repository)
+    {
+        _repository = repository;
+    }
 
-    request.UserId = int.Parse(userIdClaim);
-    request.CompanyId = int.Parse(companyIdClaim);
+    [HttpPost]
+    public async Task<IActionResult> CreateShipment([FromBody] CreateShipmentRequest request)
+    {
+        var userId = GetUserId();
+        var companyId = GetCompanyId();
 
-    var result = await _repository.CreateShipmentAsync(request);
+        var result = await _repository.CreateShipmentAsync(request, userId, companyId);
 
-    return Ok(result);
-}
-
-        [HttpPost("{id}/status")]
-        public async Task<IActionResult> ChangeStatus(
-    int id,
-    [FromBody] ChangeShipmentStatusRequest request)
+        return Ok(new
         {
-            request.ShipmentId = id;
+            success = true,
+            data = result,
+            error = (object?)null
+        });
+    }
 
-            await _repository.ChangeShipmentStatusAsync(request);
+    [HttpPost("{id}/status")]
+    public async Task<IActionResult> ChangeStatus(int id, [FromBody] ChangeShipmentStatusRequest request)
+    {
+        var userId = GetUserId();
+        var companyId = GetCompanyId();
 
-            return Ok(new
-            {
-                message = "Status updated successfully"
-            });
-        }
+        request.ShipmentId = id;
 
-        [HttpGet("track/{trackingNumber}")]
-        public async Task<IActionResult> Track(string trackingNumber)
+        await _repository.ChangeShipmentStatusAsync(request, userId, companyId);
+
+        return Ok(new
         {
-            var result = await _repository.GetTrackingAsync(trackingNumber);
+            success = true,
+            data = new { message = "Status updated successfully" },
+            error = (object?)null
+        });
+    }
 
-            if (result == null)
-                return NotFound(new { error = "Tracking not found" });
 
-            return Ok(result);
-        }
+    [Authorize(Roles = "ADMIN_GENERAL,CAJERO")]
+    [AllowAnonymous]
+    [HttpGet("track/{trackingNumber}")]
+    public async Task<IActionResult> Track(string trackingNumber)
+    {
+        var result = await _repository.GetTrackingAsync(trackingNumber);
 
-        [HttpGet("{id}/history")]
-        public async Task<IActionResult> GetHistory(int id)
+        if (result == null)
+            throw new Exception("Tracking not found"); // lo manejará el middleware
+
+        return Ok(new
         {
-            int companyId = int.Parse(User.FindFirst("companyId").Value);
-            var result = await _repository.GetShipmentHistoryAsync(id, companyId);
-            return Ok(result);
-        }
+            success = true,
+            data = result,
+            error = (object?)null
+        });
+    }
 
 
+    [Authorize(Roles = "ADMIN_GENERAL")]
+    [HttpGet("{id}/history")]
+    public async Task<IActionResult> GetHistory(int id)
+    {
+        var companyId = GetCompanyId();
+        var role = GetUserRole();
 
+        var result = await _repository.GetShipmentHistoryAsync(id, companyId, role);
 
+        return Ok(new
+        {
+            success = true,
+            data = result,
+            error = (object?)null
+        });
     }
 }

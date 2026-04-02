@@ -1713,11 +1713,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Logistica.API.csproj",
+      "projectUniqueName": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\Logistica.API.csproj",
       "projectName": "Logistica.API",
-      "projectPath": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\Logistica.API.csproj",
+      "projectPath": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\Logistica.API.csproj",
       "packagesPath": "C:\\Users\\Tony\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Back\\Logistica.API\\obj\\",
+      "outputPath": "C:\\Users\\Tony\\Documents\\GitKtraken\\Logistica\\Logistica\\Back\\Logistica.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
