@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Logistica.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+647ad5761f530f06fc163695a0115a252ac10d16")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+391b5bbfb646eaa4ca39a3431f06139d5b2fc408")]
 [assembly: System.Reflection.AssemblyProductAttribute("Logistica.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Logistica.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
