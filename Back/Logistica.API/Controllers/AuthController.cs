@@ -21,7 +21,7 @@ public class AuthController : ControllerBase
     public async Task<IActionResult> Login([FromBody] LoginRequest request)
     {
         var user = await _authRepository.LoginAsync(
-            request.CompanyId,
+            
             request.Username,
             request.Password
         );

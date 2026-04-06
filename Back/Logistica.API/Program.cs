@@ -1,12 +1,12 @@
 using Encomiendas.API.Common.Middleware;
 using Encomiendas.API.Infrastructure.Data;
 using Encomiendas.API.Infrastructure.Repositories;
-
 using Logistica.API.Infrastructure.Repositores;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 
 
@@ -126,6 +126,25 @@ builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IJwtService, JwtService>();
 
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 5 * 1024 * 1024; // 5MB
+});
+
+
+builder.WebHost.UseUrls("https://0.0.0.0:7177");
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
 
 // Controllers
 builder.Services.AddControllers();
@@ -148,8 +167,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors("AllowAngular");
+
 app.UseAuthentication(); // primero
 app.UseAuthorization();  // después
+
+app.UseStaticFiles();
 
 app.MapControllers();
 

@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Dapper;
 using Encomiendas.API.Infrastructure.Data;
 using Logistica.API.Application.DTOs;
 using Logistica.API.Application.DTOs.Auth;
@@ -17,13 +16,12 @@ public class AuthRepository : IAuthRepository
         _connectionFactory = connectionFactory;
     }
 
-    public async Task<LoginUserDto?> LoginAsync(int companyId, string username, string password)
+    public async Task<LoginUserDto?> LoginAsync(string username, string password)
     {
         using var connection = _connectionFactory.CreateConnection();
 
         var parameters = new
         {
-            CompanyID = companyId,
             Username = username,
             Password = password
         };
@@ -34,7 +32,7 @@ public class AuthRepository : IAuthRepository
             commandType: CommandType.StoredProcedure
         );
 
-        return result;
+        return result; // puede ser null (login fallido)
     }
 
 

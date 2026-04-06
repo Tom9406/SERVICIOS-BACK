@@ -6,7 +6,7 @@ namespace Logistica.API.Infrastructure.Repositores
 {
     public interface IAuthRepository
     {
-        Task<LoginUserDto?> LoginAsync(int companyId, string username, string password);
+        Task<LoginUserDto?> LoginAsync( string username, string password);
 
         
     }

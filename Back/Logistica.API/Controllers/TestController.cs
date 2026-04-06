@@ -23,7 +23,7 @@ namespace Encomiendas.API.Controllers
         [HttpGet("db")]
         public async Task<IActionResult> TestConnection()
         {
-            var user = await _authRepository.LoginAsync(1, "admin.asu", "HASH_FAKE_123");
+            var user = await _authRepository.LoginAsync( "admin.asu", "HASH_FAKE_123");
 
             return Ok(user);
         }
