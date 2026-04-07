@@ -17,20 +17,39 @@ public class CustomersController : BaseController
         _repository = repository;
     }
 
-    private int GetCompanyId() =>
-        int.Parse(User.FindFirst("companyId").Value);
+    private int GetCompanyId()
+    {
+        var claim = User.FindFirst("companyId") ?? User.FindFirst("CompanyId");
+        if (claim == null) throw new Exception("Token sin companyId");
+        return int.Parse(claim.Value);
+    }
 
-    private int GetUserId() =>
-        int.Parse(User.FindFirst("userId").Value);
+    private int GetUserId()
+    {
+        var claim = User.FindFirst("userId") ?? User.FindFirst("UserId");
+        if (claim == null) throw new Exception("Token sin userId");
+        return int.Parse(claim.Value);
+    }
 
-    private string GetRole() =>
-        User.FindFirst(ClaimTypes.Role).Value;
+    private string GetRole()
+    {
+        var claim = User.FindFirst(ClaimTypes.Role)
+                 ?? User.FindFirst("role")
+                 ?? User.FindFirst("http://schemas.microsoft.com/ws/2008/06/identity/claims/role");
 
-    private string GetIP() =>
-        HttpContext.Connection.RemoteIpAddress?.ToString();
+        if (claim == null) throw new Exception("Token sin role");
+
+        return claim.Value;
+    }
+
+    private string GetIP()
+    {
+        return HttpContext.Connection.RemoteIpAddress?.ToString() ?? "N/A";
+    }
 
     // 🔹 CREATE
     [HttpPost]
+    [Authorize(Roles = "ADMIN_GENERAL,GESTOR_SUPREMO")]
     public async Task<IActionResult> Create([FromBody] CreateCustomerRequest request)
     {
         var id = await _repository.CreateCustomerAsync(
@@ -40,13 +59,18 @@ public class CustomersController : BaseController
             request,
             GetIP());
 
-        return Ok(new { CustomerID = id });
+        return Ok(new { customerID = id });
     }
 
     // 🔹 UPDATE
-    [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UpdateCustomerRequest request)
+    [HttpPut("{id}")]
+    [Authorize(Roles = "ADMIN_GENERAL,GESTOR_SUPREMO")]
+    public async Task<IActionResult> Update(int id, [FromBody] UpdateCustomerRequest request)
     {
+      
+        if (id != request.CustomerID)
+            return BadRequest("El ID no coincide");
+
         await _repository.UpdateCustomerAsync(
             GetCompanyId(),
             GetUserId(),
@@ -57,9 +81,9 @@ public class CustomersController : BaseController
         return NoContent();
     }
 
-    // 🔹 TOGGLE STATUS
+    // 🔹 TOGGLE
     [HttpPatch("{id}/toggle")]
-    [Authorize(Roles = "ADMIN_GENERAL")]
+    [Authorize(Roles = "ADMIN_GENERAL,GESTOR_SUPREMO")]
     public async Task<IActionResult> Toggle(int id)
     {
         await _repository.ToggleCustomerStatusAsync(
@@ -72,8 +96,9 @@ public class CustomersController : BaseController
         return NoContent();
     }
 
-    // 🔹 GET PAGINADO
+    // 🔹 GET (GESTOR SUPREMO)
     [HttpGet]
+    [Authorize(Roles = "ADMIN_GENERAL,GESTOR_SUPREMO")]
     public async Task<IActionResult> Get(
         int pageNumber = 1,
         int pageSize = 10,
@@ -86,6 +111,18 @@ public class CustomersController : BaseController
             pageSize,
             search,
             onlyActive);
+
+        return Ok(result);
+    }
+
+    [HttpGet("{id}")]
+    [Authorize(Roles = "ADMIN_GENERAL,GESTOR_SUPREMO")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var result = await _repository.GetCustomerByIdAsync(id, GetCompanyId());
+
+        if (result == null)
+            return NotFound();
 
         return Ok(result);
     }

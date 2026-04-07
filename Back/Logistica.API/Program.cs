@@ -68,11 +68,13 @@ builder.Services.AddAuthentication(options =>
         ValidAudience = issuer,
 
         IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(jwtKey)
-        )
+        Encoding.UTF8.GetBytes(jwtKey)
+    ),
+
+        RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
     };
 
-    
+
     options.Events = new JwtBearerEvents
     {
         OnChallenge = async context =>
@@ -119,6 +121,8 @@ builder.Services.AddAuthentication(options =>
 
 //Services
 builder.Services.AddScoped<IDbConnectionFactory, DbConnectionFactory>();
+
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
 

@@ -32,5 +32,8 @@ namespace Logistica.API.Infrastructure.Repositores
             int pageSize,
             string search,
             bool? onlyActive);
+
+        Task<CustomerResponse?> GetCustomerByIdAsync(int id, int companyId);
     }
+     
 }
