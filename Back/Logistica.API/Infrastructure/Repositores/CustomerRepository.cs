@@ -39,7 +39,7 @@ namespace Logistica.API.Infrastructure.Repositores
                     request.Email,
                     request.DocumentNumber,
                     request.DocumentType,
-                    request.CustomerType,
+                    CustomerType = request.CustomerType == "PERSONA" ? "PERSON" : "BUSINESS",
                     request.BusinessName,
 
                     IPAddress = ipAddress

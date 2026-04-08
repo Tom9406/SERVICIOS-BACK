@@ -101,12 +101,12 @@ namespace Logistica.API.Infrastructure.Repositores
         }
 
         public async Task<PagedResult<ServiceResponse>> GetServicesAsync(
-            int companyId,
-            string userRole,
-            int pageNumber,
-            int pageSize,
-            string search,
-            bool? onlyActive)
+    int companyId,
+    string userRole,
+    int pageNumber,
+    int pageSize,
+    string search,
+    bool? onlyActive)
         {
             using var connection = _connectionFactory.CreateConnection();
 
@@ -124,14 +124,26 @@ namespace Logistica.API.Infrastructure.Repositores
                 commandType: CommandType.StoredProcedure
             );
 
-            var data = await multi.ReadAsync<ServiceResponse>();
-            var total = await multi.ReadSingleAsync<int>();
-
+            var data = (await multi.ReadAsync<ServiceResponse>()).ToList();
+            var total = await multi.ReadFirstOrDefaultAsync<int>();
             return new PagedResult<ServiceResponse>
             {
-                Data = data.ToList(),
+                Data = data,
                 TotalRows = total
             };
+        }
+
+        public async Task<ServiceResponse?> GetServiceByIdAsync(int id, int companyId)
+        {
+            using var connection = _connectionFactory.CreateConnection();
+
+            return await connection.QueryFirstOrDefaultAsync<ServiceResponse>(
+                @"SELECT *
+          FROM Services
+          WHERE ServiceID = @ServiceID
+          AND CompanyID = @CompanyID",
+                new { ServiceID = id, CompanyID = companyId }
+            );
         }
     }
 }

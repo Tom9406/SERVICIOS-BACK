@@ -126,6 +126,8 @@ builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 builder.Services.AddScoped<IShipmentRepository, ShipmentRepository>();
 
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IJwtService, JwtService>();

@@ -43,9 +43,13 @@ namespace Logistica.API.Controllers
             return Ok(new { ServiceID = id });
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update(UpdateServiceRequest request)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, UpdateServiceRequest request)
         {
+            //  Validación importante
+            if (id != request.ServiceID)
+                return BadRequest("ID mismatch");
+
             await _repository.UpdateServiceAsync(
                 GetCompanyId(),
                 GetUserId(),
@@ -71,20 +75,50 @@ namespace Logistica.API.Controllers
 
         [HttpGet]
         public async Task<IActionResult> Get(
-            int pageNumber = 1,
-            int pageSize = 10,
-            string search = null,
-            bool? onlyActive = null)
+    int pageNumber = 1,
+    int pageSize = 10,
+    string search = null,
+    bool? onlyActive = null)
         {
-            var result = await _repository.GetServicesAsync(
-                GetCompanyId(),
-                GetRole(),
-                pageNumber,
-                pageSize,
-                search,
-                onlyActive);
+            try
+            {
+                var result = await _repository.GetServicesAsync(
+                    GetCompanyId(),
+                    GetRole(),
+                    pageNumber,
+                    pageSize,
+                    search,
+                    onlyActive);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    message = ex.Message,
+                    inner = ex.InnerException?.Message,
+                    stack = ex.StackTrace
+                });
+            }
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var service = await _repository.GetServiceByIdAsync(
+                id,
+                GetCompanyId()
+            );
+
+            if (service == null)
+                return NotFound();
+
+            return Ok(service);
+        }
+
     }
+
+
+
 }

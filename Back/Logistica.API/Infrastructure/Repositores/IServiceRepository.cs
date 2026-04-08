@@ -33,5 +33,10 @@ namespace Logistica.API.Infrastructure.Repositores
             int pageSize,
             string search,
             bool? onlyActive);
+
+
+        Task<ServiceResponse?> GetServiceByIdAsync(int id, int companyId);
     }
+
+
 }
