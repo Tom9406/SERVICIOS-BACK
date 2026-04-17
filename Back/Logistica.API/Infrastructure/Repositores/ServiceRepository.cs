@@ -1,8 +1,9 @@
-﻿using Encomiendas.API.Infrastructure.Data;
+﻿using Dapper;
+using Encomiendas.API.Infrastructure.Data;
 using Logistica.API.Application.DTOs;
 using Logistica.API.Common;
 using System.Data;
-using Dapper;
+using System.Data.Common;
 namespace Logistica.API.Infrastructure.Repositores
 {
     public class ServiceRepository : IServiceRepository
@@ -38,7 +39,7 @@ namespace Logistica.API.Infrastructure.Repositores
                     request.Cost,
                     request.EstimatedTimeText,
                     request.Category,
-
+                    PermiteAdjunto = request.PermiteAdjunto,
                     IPAddress = ipAddress
                 },
                 commandType: CommandType.StoredProcedure
@@ -144,6 +145,25 @@ namespace Logistica.API.Infrastructure.Repositores
           AND CompanyID = @CompanyID",
                 new { ServiceID = id, CompanyID = companyId }
             );
+        }
+
+        public async Task<IEnumerable<ServiceResponse>> GetServicesByCategoryAsync(
+    int companyId,
+    string category)
+        {
+            using var connection = _connectionFactory.CreateConnection();
+
+            var result = await connection.QueryAsync<ServiceResponse>(
+                "dbo.GetServicesByCategory",
+                new
+                {
+                    CompanyID = companyId,
+                    Category = category
+                },
+                commandType: CommandType.StoredProcedure
+            );
+
+            return result;
         }
     }
 }

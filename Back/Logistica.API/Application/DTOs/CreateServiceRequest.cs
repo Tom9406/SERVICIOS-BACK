@@ -11,5 +11,7 @@
 
         public string EstimatedTimeText { get; set; }
         public string? Category { get; set; }
+
+        public bool PermiteAdjunto { get; set; } 
     }
 }

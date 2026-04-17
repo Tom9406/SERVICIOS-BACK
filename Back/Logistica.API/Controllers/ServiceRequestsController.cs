@@ -17,9 +17,14 @@ namespace Logistica.API.Controllers
             _repo = repo;
         }
 
-        private int CompanyId => int.Parse(User.FindFirst("companyId")!.Value);
-        private int UserId => int.Parse(User.FindFirst("userId")!.Value);
-        private string Ip => HttpContext.Connection.RemoteIpAddress?.ToString() ?? "N/A";
+        private int GetCompanyId() =>
+    int.Parse(User.FindFirst("companyId")?.Value ?? throw new Exception("companyId missing"));
+
+        private int GetUserId() =>
+            int.Parse(User.FindFirst("userId")?.Value ?? throw new Exception("userId missing"));
+
+        private string GetIP() =>
+            HttpContext.Connection.RemoteIpAddress?.ToString() ?? "N/A";
 
         // 🔹 CREATE (con comprobante)
         [HttpPost]
@@ -29,11 +34,11 @@ namespace Logistica.API.Controllers
                 return BadRequest("Comprobante requerido.");
 
             var id = await _repo.CreateAsync(
-                CompanyId,
-                UserId,
+                GetCompanyId(),
+                GetUserId(),
                 dto.ServiceID,
-                dto.ImageUrl, // 🔥 NUEVO
-                Ip
+                dto.ImageUrl,
+                GetIP()
             );
 
             return Ok(new { requestId = id });
@@ -43,16 +48,28 @@ namespace Logistica.API.Controllers
         [HttpGet("my")]
         public async Task<IActionResult> MyRequests()
         {
-            var data = await _repo.GetByUserAsync(CompanyId, UserId);
+            var data = await _repo.GetByUserAsync(GetCompanyId(), GetUserId());
             return Ok(data);
         }
 
         // 🔹 ADMIN / GESTOR
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] string? status)
+        public async Task<IActionResult> GetAll(
+    [FromQuery] int pageNumber = 1,
+    [FromQuery] int pageSize = 10,
+    [FromQuery] string? search = null,
+    [FromQuery] string? status = null)
         {
-            var data = await _repo.GetAdminAsync(CompanyId, UserId, status);
-            return Ok(data);
+            var result = await _repo.GetAdminAsync(
+                GetCompanyId(),
+                GetUserId(),
+                pageNumber,
+                pageSize,
+                search,
+                status
+            );
+
+            return Ok(result);
         }
 
         // 🔹 UPDATE STATUS (operación)
@@ -62,18 +79,81 @@ namespace Logistica.API.Controllers
             if (string.IsNullOrWhiteSpace(dto.NewStatus))
                 return BadRequest("Estado requerido.");
 
-            await _repo.UpdateStatusAsync(id, UserId, dto.NewStatus, Ip);
+            await _repo.UpdateStatusAsync(id, GetUserId(), dto.NewStatus, GetIP());
             return Ok();
         }
 
         [HttpPut("{id}/payment")]
         public async Task<IActionResult> ValidatePayment(long id, [FromBody] ValidatePaymentDto dto)
         {
-            await _repo.ValidatePaymentAsync(id, UserId, dto.Approve, Ip);
+            await _repo.ValidatePaymentAsync(id, GetUserId(), dto.Approve, GetIP());
             return Ok(new
             {
                 message = dto.Approve ? "Pago validado" : "Pago rechazado"
             });
+        }
+
+
+        [HttpPost("{id}/attachment")]
+        public async Task<IActionResult> UploadAttachment(long id, IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("Archivo requerido.");
+
+            if (file.Length > 10 * 1024 * 1024)
+                return BadRequest("Máximo 10MB.");
+
+            // 🔹 Generar nombre seguro
+            var fileName = $"{Guid.NewGuid()}_{file.FileName}";
+            var folderPath = Path.Combine("wwwroot", "uploads", "service-requests");
+
+            if (!Directory.Exists(folderPath))
+                Directory.CreateDirectory(folderPath);
+
+            var fullPath = Path.Combine(folderPath, fileName);
+
+            // 🔹 Guardar archivo físico
+            using (var stream = new FileStream(fullPath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            // 🔹 Ruta relativa (lo que guardas en DB)
+            var relativePath = $"/uploads/service-requests/{fileName}";
+
+            // 🔹 Guardar en DB
+            var adjuntoId = await _repo.CreateAttachmentAsync(
+                GetCompanyId(),
+                GetUserId(),
+                id,
+                file.FileName,
+                relativePath,
+                (int)file.Length,
+                GetIP()
+            );
+
+            return Ok(new { attachmentId = adjuntoId });
+        }
+
+        [HttpGet("{id}/attachment")]
+        public async Task<IActionResult> GetAttachment(long id)
+        {
+            var adjunto = await _repo.GetAttachmentAsync(
+                GetCompanyId(),
+                id
+            );
+
+            if (adjunto == null)
+                return NotFound();
+
+            return Ok(adjunto);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(long id)
+        {
+            var data = await _repo.GetByIdAsync(id, GetCompanyId());
+            return Ok(data);
         }
     }
 }

@@ -34,9 +34,13 @@ namespace Logistica.API.Infrastructure.Repositores
             string search,
             bool? onlyActive);
 
+        Task<ServiceResponse?> GetServiceByIdAsync(
+            int id,
+            int companyId);
 
-        Task<ServiceResponse?> GetServiceByIdAsync(int id, int companyId);
+        Task<IEnumerable<ServiceResponse>> GetServicesByCategoryAsync(
+    int companyId,
+    string category
+);
     }
-
-
 }

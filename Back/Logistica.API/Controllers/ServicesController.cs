@@ -30,6 +30,9 @@ namespace Logistica.API.Controllers
         private string GetIP() =>
             HttpContext.Connection.RemoteIpAddress?.ToString();
 
+        // =========================
+        // CREATE
+        // =========================
         [HttpPost]
         public async Task<IActionResult> Create(CreateServiceRequest request)
         {
@@ -43,10 +46,12 @@ namespace Logistica.API.Controllers
             return Ok(new { ServiceID = id });
         }
 
+        // =========================
+        // UPDATE
+        // =========================
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateServiceRequest request)
         {
-            //  Validación importante
             if (id != request.ServiceID)
                 return BadRequest("ID mismatch");
 
@@ -60,6 +65,9 @@ namespace Logistica.API.Controllers
             return NoContent();
         }
 
+        // =========================
+        // TOGGLE
+        // =========================
         [HttpPatch("{id}/toggle")]
         public async Task<IActionResult> Toggle(int id)
         {
@@ -73,12 +81,15 @@ namespace Logistica.API.Controllers
             return NoContent();
         }
 
+        // =========================
+        // GET PAGINADO (EXISTENTE)
+        // =========================
         [HttpGet]
         public async Task<IActionResult> Get(
-    int pageNumber = 1,
-    int pageSize = 10,
-    string search = null,
-    bool? onlyActive = null)
+            int pageNumber = 1,
+            int pageSize = 10,
+            string search = null,
+            bool? onlyActive = null)
         {
             try
             {
@@ -103,6 +114,9 @@ namespace Logistica.API.Controllers
             }
         }
 
+        // =========================
+        // GET BY ID
+        // =========================
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -117,8 +131,33 @@ namespace Logistica.API.Controllers
             return Ok(service);
         }
 
+        // =========================
+        // NUEVO: GET POR CATEGORÍA
+        // =========================
+        [HttpGet("by-category")]
+        public async Task<IActionResult> GetByCategory([FromQuery] string category)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(category))
+                    return BadRequest("Category is required");
+
+                var services = await _repository.GetServicesByCategoryAsync(
+                    GetCompanyId(),
+                    category
+                );
+
+                return Ok(services);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    message = ex.Message,
+                    inner = ex.InnerException?.Message,
+                    stack = ex.StackTrace
+                });
+            }
+        }
     }
-
-
-
 }

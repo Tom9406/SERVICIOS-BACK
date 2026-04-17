@@ -15,8 +15,8 @@
         public decimal Price { get; set; }
         public decimal? Cost { get; set; }
 
-        
-        
+        public bool PermiteAdjunto { get; set; }
+
 
         public bool IsActive { get; set; }
         public DateTime CreatedAt { get; set; }

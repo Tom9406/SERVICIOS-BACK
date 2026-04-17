@@ -1,4 +1,5 @@
 ﻿using Logistica.API.Application.DTOs;
+using Logistica.API.Common;
 
 namespace Logistica.API.Infrastructure
 {
@@ -9,7 +10,18 @@ namespace Logistica.API.Infrastructure
             int companyId,
             int userId,
             int serviceId,
-            string imageUrl, // 🔥 NUEVO
+            string imageUrl, // comprobante de pago
+            string ip
+        );
+
+        // 🔹 NUEVO → Subir adjunto del servicio
+        Task<int> CreateAttachmentAsync(
+            int companyId,
+            int userId,
+            long serviceRequestId,
+            string nombreArchivo,
+            string rutaArchivo,
+            int tamañoBytes,
             string ip
         );
 
@@ -20,9 +32,12 @@ namespace Logistica.API.Infrastructure
         );
 
         // 🔹 Admin / Gestor
-        Task<IEnumerable<ServiceRequestDto>> GetAdminAsync(
+        Task<PagedResult<ServiceRequestDto>> GetAdminAsync(
             int companyId,
             int userId,
+            int pageNumber,
+            int pageSize,
+            string? search,
             string? status
         );
 
@@ -34,12 +49,18 @@ namespace Logistica.API.Infrastructure
             string ip
         );
 
-        // 🔥 NUEVO → Validar / rechazar pago
+        // 🔥 Validar / rechazar pago
         Task ValidatePaymentAsync(
             long requestId,
             int userId,
             bool approve,
             string ip
         );
+
+        Task<ServiceRequestAttachmentDto?> GetAttachmentAsync(
+            int companyId,
+            long requestId
+        );
+        Task<ServiceRequestDto?> GetByIdAsync(long requestId, int companyId);
     }
 }
